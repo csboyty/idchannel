@@ -1,0 +1,357 @@
+html{
+    height: 100%;
+    width: 100%;
+}
+body{
+    width: 100%;
+    height:100%;
+    padding:0px;
+    margin:0px;
+    border: 4px solid #9DCB3B;
+    background: #35353E;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-size: 14px;
+    position: relative;
+    font-family: "Microsoft YaHei","宋体","Heiti SC";;
+}
+a{
+    text-decoration: none;
+}
+ul{
+    padding:0px;
+    margin:0px;
+    list-style: none;
+}
+embed{
+    width: 100%;
+    height: 100%;
+}
+.logo{
+    width:250px;
+    height: 35px;
+    position: absolute;
+    top:20px;
+    left:30px;
+    z-index: 5;
+    margin:0px;
+}
+.logo a{
+    display: block;
+    background: url(../../../images/frontend/app/logo250.png) no-repeat;
+    font-size: 0px;
+    width:100%;
+    height:100%;
+}
+
+/**
+*菜单
+*/
+.menuContainer{
+    width: 250px;
+    position: absolute;
+    top:80px;
+    left:30px;
+    z-index: 5;
+}
+.menu .menu-item{
+    margin: 10px 0px;
+}
+.menu .menu-item a{
+    background: #C1C1C7;
+    padding:0px 5px;
+    color:#35353E;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+}
+.menu>.menu-item:first-child +.menu-item +.menu-item +.menu-item{
+    margin:40px 0px;
+}
+.menu>.menu-item>a:hover,.menu>.current-menu-item>a,.menu>.current-post-ancestor>a,.menu>.current-menu-ancestor>a{
+    background: #9DCB3B;
+}
+.menu .menu-item .sub-menu{
+    display: none;
+}
+.menu .current-menu-ancestor .sub-menu,.menu .current-menu-item .sub-menu{
+    display: block;
+}
+.sub-menu .menu-item a{
+    color: #fff;
+    background: #000;
+    padding:0px 5px 0px 15px;
+}
+.sub-menu .menu-item a:hover,.sub-menu .current-menu-item a{
+    background: url(../../../images/frontend/app/subMenuHover.png) repeat-y #C1C1C7;
+}
+
+
+/**
+*搜索
+*/
+.search{
+    position: absolute;
+    top:20px;
+    right:20px;
+    z-index: 5;
+}
+.search .searchInput{
+    background:url(../../../images/frontend/app/search.png) 5px no-repeat #87878E;
+    padding-left:27px;
+    border: none;
+    height: 20px;
+    line-height: 20px;
+    width: 200px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.main{
+    position: absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:20px;
+    /*background: yellow;*/
+    z-index: 1;
+    overflow: hidden;
+}
+
+/**
+* 头条文章
+*/
+.topVideosListContainer{
+    margin-left: 15%;
+    height: 100%;
+    overflow: hidden;
+}
+.topVideosList{
+    left:0px;
+    top:0px;
+    white-space: nowrap;
+    font-size: 0px;
+    height: 100%;
+    position: relative;
+}
+.topVideosList .videoItem{
+    display: inline-block;
+    width:75%;
+    height: 100%;
+    position: relative;
+    margin:0px;
+    border: none;
+}
+
+
+/**
+* 缩略图层
+*/
+.posterContainer{
+    height: 100%;
+    width:100%;
+    position: absolute;
+    top:0px;
+    z-index: 2;
+}
+.videoPoster{
+    width: 100%;
+    height:100%;
+    display: block;
+}
+.videoPlayIcon{
+    display: block;
+    width:50px;
+    height: 50px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin:-25px 0px 0px -25px;
+    background: url(../../../images/frontend/app/playIcon.png) no-repeat;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 0px;
+    cursor: pointer;
+}
+.playerContainer{
+    position: absolute;
+}
+
+/**
+* 摘要描述
+*/
+.description{
+    position: absolute;
+    top:70px;
+    right:20px;
+    width:200px;
+    z-index: 5;
+    background: #fff;
+}
+.description .title{
+    font-size: 16px;
+    padding:5px;
+    margin:5px 0px;
+}
+.categoryDescription .title{
+    background: #87878E;
+    margin:0px;
+}
+.description .excerpt{
+    padding:5px;
+}
+.description .category{
+    background: #87878E;
+    margin:0px;
+    padding:3px;
+}
+
+/**
+*分类页
+*/
+.categoryContainer{
+    margin: 0px 300px;
+}
+.singleTitle{
+    background: #C1C1C7;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    color: #000;
+    margin: 70px 0.83% 50px 0.83%;
+    padding:0px 0px 0px 10px;
+}
+.projectTitle{
+    margin:70px 0px 50px 0px;
+    background: #000;
+    color:#fff;
+}
+.videoList{
+    font-size: 0px;
+}
+.videoItem{
+    width: 23%;
+    position: relative;
+    overflow: hidden;
+    border:1px solid #9DCB3B;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    display: inline-block;
+    margin:1%;
+}
+.videoItem .title{
+    position: absolute;
+    bottom:-30px;
+    left:0px;
+    font-size: 14px;
+    height:20px;
+    line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #C1C1C7;
+    color:#000;
+    margin:0px;
+    width: 100%;
+    transition:bottom .5s linear;
+    -webkit-transition:bottom .5s linear;
+    -moz-transition:bottom .5s linear;
+}
+.videoItem:hover .title{
+    bottom:0px;
+}
+.projectItem{
+    height: 250px;
+    width: 100%;
+    position: relative;
+    font-size: 0px;
+}
+.projectItem .title{
+    font-size: 14px;
+    background: #87878E;
+    margin: 0px;
+    padding:0px 0px 0px 10px;
+}
+.projectItem .detail{
+    height: 100%;
+}
+.projectItem .thumbContainer{
+    height: 100%;
+    width: 70%;
+    display: inline-block;
+}
+.projectItem .thumbContainer .thumb{
+    width: 100%;
+    height: 100%;
+}
+.projectItem .abstract{
+    display: inline-block;
+    width: 30%;
+    height: 100%;
+    font-size: 14px;
+    vertical-align: top;
+    background: #C1C1C7;
+    position: relative;
+}
+.projectItem .abstract .about{
+    padding:10px;
+    margin:0px;
+}
+.projectItem .abstract .excerpt{
+    padding:10px;
+    margin: 5px 0px 0px 0px;
+}
+.projectItem .abstract .link{
+    height: 25px;
+    line-height: 25px;
+    background: #87878E;
+    text-align: center;
+    display: block;
+    width: 100%;
+    position: absolute;
+    left:0px;
+    bottom:0px;
+    color:#000;
+}
+.projectItem .abstract .link:hover{
+    color:#000;
+}
+
+/**
+*底部
+*/
+.footer{
+    position: absolute;
+    background: #000000;
+    height: 20px;
+    line-height: 20px;
+    color:#fff;
+    bottom:0px;
+    left:0px;
+    width: 100%;
+    z-index: 5;
+}
+.copyRight{
+    display: inline-block;
+    margin:0px 0px 0px 10px;
+}
+
+/**
+*友情链接
+*/
+.linkList{
+    display: inline-block;
+}
+.linkList li{
+    width: auto;
+    margin-left:10px;
+}
+.linkList li a{
+    color:#fff;
+}
+
+.hidden{
+    display: none;
+}
