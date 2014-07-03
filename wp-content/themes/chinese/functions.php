@@ -73,7 +73,7 @@ function twentytwelve_setup() {
 
 	// This theme uses a custom image size for featured images, displayed on "standard" posts.
 	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 200, 100, true ); // Unlimited height, soft crop
+	set_post_thumbnail_size( 320, 180, true ); // Unlimited height, soft crop
 }
 add_action( 'after_setup_theme', 'twentytwelve_setup' );
 

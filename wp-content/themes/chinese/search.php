@@ -1,49 +1,73 @@
-<?php
-/**
- * The template for displaying Search Results pages.
- *
- * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
- */
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="renderer" content="webkit">
+        <title><?php wp_title("|",true,"right"); ?></title>
+        <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/frontend/app/favicon.png"
+              mce_href="<?php echo get_template_directory_uri(); ?>/images/frontend/app/favicon.png" type="image/x-png">
+        <link href="<?php echo get_template_directory_uri(); ?>/css/frontend/src/main.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/frontend/lib/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/frontend/lib/jquery.nicescroll.min.js"></script>
 
-get_header(); ?>
+        <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/frontend/src/main.js"></script>
 
-	<section id="primary" class="site-content">
-		<div id="content" role="main">
+    </head>
+<body>
 
-		<?php if ( have_posts() ) : ?>
+<?php get_template_part("menu"); ?>
 
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'twentytwelve' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-			</header>
+<div class="main">
+    <div class="centerContainer">
+        <h2 class="singleTitle singleTitleOne">搜索：<?php echo get_search_query(); ?></h2>
 
-			<?php twentytwelve_content_nav( 'nav-above' ); ?>
+        <?php
+        function get_own_link($link){
+            $sPos=strpos($link,"href=");
+            $ePos=strpos($link,">");
 
-			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', get_post_format() ); ?>
-			<?php endwhile; ?>
+            return substr($link,$sPos+6,$ePos-$sPos-8);
+        }
 
-			<?php twentytwelve_content_nav( 'nav-below' ); ?>
+        if($prev=get_previous_posts_link()){
+            ?>
+            <a class="prevPage pageItem" href="<?php echo get_own_link($prev); ?>"></a>
+        <?php
+        }
+        ?>
 
-		<?php else : ?>
+        <ul class="itemList" id="itemList">
 
-			<article id="post-0" class="post no-results not-found">
-				<header class="entry-header">
-					<h1 class="entry-title"><?php _e( 'Nothing Found', 'twentytwelve' ); ?></h1>
-				</header>
+            <?php while ( have_posts() ) : the_post();?>
 
-				<div class="entry-content">
-					<p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'twentytwelve' ); ?></p>
-					<?php get_search_form(); ?>
-				</div><!-- .entry-content -->
-			</article><!-- #post-0 -->
+                <li class="item">
+                    <a href="<?php the_permalink(); ?>">
+                        <h4 class="title"><?php echo get_the_date(); ?>|<?php the_title(); ?></h4>
+                        <div class="detail">
+                            <?php $mediumSrc = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium'); ?>
+                            <img class="thumb" src="<?php echo $mediumSrc[0]; ?>">
 
-		<?php endif; ?>
+                            <div class="abstract">
+                                <h4 class="about"><?php the_title(); ?></h4>
+                                <p class="excerpt"><?php echo get_the_excerpt(); ?></p>
+                            </div>
 
-		</div><!-- #content -->
-	</section><!-- #primary -->
+                        </div>
+                    </a>
+                </li>
 
-<?php get_sidebar(); ?>
+            <?php endwhile; // end of the loop. ?>
+        </ul>
+
+        <?php
+        if($next=get_next_posts_link()){
+            ?>
+            <a class="nextPage pageItem" href="<?php echo get_own_link($next);?>"></a>
+        <?php
+        }
+        ?>
+
+    </div>
+</div>
+
 <?php get_footer(); ?>
