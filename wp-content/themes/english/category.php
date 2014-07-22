@@ -1,51 +1,56 @@
-<?php
-/**
- * The template for displaying Category pages.
- *
- * Used to display archive-type pages for posts in a category.
- *
- * Learn more: http://codex.wordpress.org/Template_Hierarchy
- *
- * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
- */
+<?php get_header(); ?>
 
-get_header(); ?>
 
-	<section id="primary" class="site-content">
-		<div id="content" role="main">
+<?php get_template_part("menu"); ?>
 
-		<?php if ( have_posts() ) : ?>
-			<header class="archive-header">
-				<h1 class="archive-title"><?php printf( __( 'Category Archives: %s', 'twentytwelve' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?></h1>
+    <div class="description categoryDescription">
+        <h2 class="title"><?php single_cat_title(); ?></h2>
+        <p class="excerpt">
+            <?php $category = get_queried_object();
+                echo $category->description; ?>
+        </p>
+    </div>
+    <div class="main">
+        <div class="centerContainer">
+            <h2 class="singleTitle"><?php single_cat_title(); ?></h2>
+            <div class="videoListContainer">
+                <?php
+                    function get_own_link($link){
+                        $sPos=strpos($link,"href=");
+                        $ePos=strpos($link,">");
 
-			<?php if ( category_description() ) : // Show an optional category description ?>
-				<div class="archive-meta"><?php echo category_description(); ?></div>
-			<?php endif; ?>
-			</header><!-- .archive-header -->
+                        return substr($link,$sPos+6,$ePos-$sPos-8);
+                    }
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
+                    if($prev=get_previous_posts_link()){
+                        ?>
+                        <a class="prevPage pageItem" href="<?php echo get_own_link($prev); ?>"></a>
+                        <?php
+                    }
+                ?>
 
-				/* Include the post format-specific template for the content. If you want to
-				 * this in a child theme then include a file called called content-___.php
-				 * (where ___ is the post format) and that will be used instead.
-				 */
-				get_template_part( 'content', get_post_format() );
+                <ul class="videoList">
+                    <?php while ( have_posts() ) : the_post();?>
+                        <li class="videoItem">
+                            <a href="<?php the_permalink(); ?>">
+                                <div class="cover"></div>
+                                <?php $thumbnailSrc = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
+                                <img class="thumb" src="<?php echo $thumbnailSrc[0]; ?>">
+                                <h3 class="title"><?php the_title(); ?></h3>
+                            </a>
+                        </li>
+                    <?php endwhile; // end of the loop. ?>
+                </ul>
 
-			endwhile;
+                <?php
+                if($next=get_next_posts_link()){
+                    ?>
+                    <a class="nextPage pageItem" href="<?php echo get_own_link($next);?>"></a>
+                    <?php
+                }
+                ?>
+            </div>
+        </div>
+    </div>
 
-			twentytwelve_content_nav( 'nav-below' );
-			?>
-
-		<?php else : ?>
-			<?php get_template_part( 'content', 'none' ); ?>
-		<?php endif; ?>
-
-		</div><!-- #content -->
-	</section><!-- #primary -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

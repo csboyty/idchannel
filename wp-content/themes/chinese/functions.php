@@ -458,7 +458,9 @@ $videoController=new videoController();
 function loadResource($hook){
     global $templateUrl;
 
-    if(isset($_GET["page"])){
+    if("post-new.php" == $hook){
+        wp_enqueue_script("ownPost",$templateUrl.'/js/backend/src/post.js');
+    }else if(isset($_GET["page"])){
         if($_GET["page"]=="videoMgr"){
 
             wp_enqueue_script("jqpagination",$templateUrl.'/js/backend/lib/jquery.jqpagination.min.js');

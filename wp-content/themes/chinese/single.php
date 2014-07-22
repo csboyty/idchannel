@@ -3,14 +3,10 @@
     $newsId=6;
     get_header();
 ?>
-    <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/frontend/lib/baiduPlayer/js/cyberplayer.min.js"></script>
-    <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/frontend/lib/jquery.nicescroll.min.js"></script>
-    <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/frontend/src/main.js"></script>
-    <script type="text/javascript">
-        var templateUrl="<?php echo get_template_directory_uri(); ?>";
-    </script>
-</head>
-<body>
+<script type="text/javascript">
+    var templateUrl="<?php echo get_template_directory_uri(); ?>";
+</script>
+
 
 <?php get_template_part("menu"); ?>
 
@@ -38,6 +34,7 @@
         ?>
         <div class="singleVideo" id="singleVideo" data-video-url="<?php echo get_the_content(); ?>">
             <div class="posterContainer" id="posterContainer">
+                <div class="cover"></div>
                 <?php $fullSrc = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full'); ?>
                 <img class="videoPoster" src="<?php echo $fullSrc[0]; ?>">
                 <span class="videoPlayIcon" id="videoPlayIcon">播放按钮</span>

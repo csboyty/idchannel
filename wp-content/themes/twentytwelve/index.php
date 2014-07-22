@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<!--[if IE 8]> <html class="IE8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit">
@@ -9,6 +10,7 @@
     <link href="<?php echo get_template_directory_uri(); ?>/css/frontend/src/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<div class="centerContent">
     <h1 class="logo">
         <a><?php echo get_bloginfo("name"); ?></a>
     </h1>
@@ -16,12 +18,13 @@
         <li><a href="<?php
             $mainBlog=get_blog_details(2);
             echo $mainBlog->siteurl;
-            ?>" id="chinese">汉字</a></li>
+            ?>" id="chinese">中文</a></li>
 
         <li><a href="<?php
             $mainBlog=get_blog_details(3);
             echo $mainBlog->siteurl;
-            ?>" id="english">西文</a></li>
+            ?>" id="english">English</a></li>
     </ul>
+</div>
 </body>
 </html>

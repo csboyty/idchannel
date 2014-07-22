@@ -1,33 +1,65 @@
 <?php
-/**
- * The Template for displaying all single posts.
- *
- * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
- */
+    $flashId=8;
+    $newsId=6;
+    get_header();
+?>
+<script type="text/javascript">
+    var templateUrl="<?php echo get_template_directory_uri(); ?>";
+</script>
 
-get_header(); ?>
 
-	<div id="primary" class="site-content">
-		<div id="content" role="main">
+<?php get_template_part("menu"); ?>
 
-			<?php while ( have_posts() ) : the_post(); ?>
+<?php while ( have_posts() ) : the_post(); ?>
+<div class="description">
+    <h2 class="title"><?php the_title(); ?></h2>
+    <p class="excerpt"><?php echo get_the_excerpt(); ?></p>
+    <p class="category">
+        <?php $categories = get_the_category();
+            $category=$categories[0];
+            echo $category->cat_name; ?>
+    </p>
+</div>
+<div class="main">
+    <?php if($category->term_id==$newsId){
+        ?>
+        <div class="centerContainer">
+            <h2 class="singleTitle singleTitleOne"><?php the_title(); ?></h2>
+            <div class="singleContent" id="singleContent">
+                <?php the_content(); ?>
+            </div>
+        </div>
+        <?php
+    }else{
+        ?>
+        <div class="singleVideo" id="singleVideo" data-video-url="<?php echo get_the_content(); ?>">
+            <div class="posterContainer" id="posterContainer">
+                <div class="cover"></div>
+                <?php $fullSrc = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full'); ?>
+                <img class="videoPoster" src="<?php echo $fullSrc[0]; ?>">
+                <span class="videoPlayIcon" id="videoPlayIcon">播放按钮</span>
+            </div>
 
-				<?php get_template_part( 'content', get_post_format() ); ?>
+            <?php if($category->term_id==$flashId){?>
 
-				<nav class="nav-single">
-					<h3 class="assistive-text"><?php _e( 'Post navigation', 'twentytwelve' ); ?></h3>
-					<span class="nav-previous"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'twentytwelve' ) . '</span> %title' ); ?></span>
-					<span class="nav-next"><?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'twentytwelve' ) . '</span>' ); ?></span>
-				</nav><!-- .nav-single -->
+                <embed src="<?php echo get_the_content(); ?>" type="application/x-shockwave-flash" class="playerContainer"></embed>
 
-				<?php comments_template( '', true ); ?>
+            <?php
+            }else{
+                ?>
 
-			<?php endwhile; // end of the loop. ?>
+                <div id="bdPlayerContainer" class="playerContainer"></div>
 
-		</div><!-- #content -->
-	</div><!-- #primary -->
+            <?php
+            }
+            ?>
 
-<?php get_sidebar(); ?>
+        </div>
+        <?php
+    }
+    ?>
+
+</div>
+<?php endwhile; // end of the loop. ?>
+
 <?php get_footer(); ?>

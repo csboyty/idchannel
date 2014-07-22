@@ -8,11 +8,11 @@ body{
     padding:0px;
     margin:0px;
     border: 4px solid #9DCB3B;
-    background: #35353E;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     font-size: 14px;
+    background: url(../../../images/frontend/app/bodyBg.png) repeat #35353E;
     position: relative;
     font-family: "Arail","Microsoft YaHei","宋体","Heiti SC";
 }
@@ -52,19 +52,19 @@ embed{
 .menuContainer{
     width: 200px;
     position: absolute;
-    top:70px;
+    top:80px;
     left:30px;
     z-index: 5;
 }
 .menu .menu-item{
-    margin: 0px 0px 20px 0px;
+    margin: 0px 0px 5px 0px;
 }
 .menu .menu-item a{
     background: #C1C1C7;
     padding:0px 5px;
     color:#35353E;
-    height: 20px;
-    line-height: 20px;
+    height: 25px;
+    line-height: 25px;
     display: inline-block;
 }
 .menu>.menu-item:first-child +.menu-item +.menu-item +.menu-item{
@@ -109,8 +109,8 @@ embed{
     background:url(../../../images/frontend/app/search.png) 5px no-repeat #87878E;
     padding-left:27px;
     border: none;
-    height: 20px;
-    line-height: 20px;
+    height: 25px;
+    line-height: 25px;
     width: 200px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -131,7 +131,7 @@ embed{
 * 头条文章
 */
 .headLineListContainer{
-    margin-left: 15%;
+    width: 100%;
     height: 100%;
     overflow: hidden;
 }
@@ -145,7 +145,7 @@ embed{
 }
 .headLineList .headLineItem{
     display: inline-block;
-    width:75%;
+    width:100%;
     height: 100%;
     position: relative;
     margin:0px;
@@ -163,6 +163,13 @@ embed{
     top:0px;
     z-index: 2;
     cursor:pointer;
+}
+.cover{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: url(../../../images/frontend/app/cover.png) repeat;
+    opacity: .5;
 }
 .videoPoster{
     width: 100%;
@@ -192,7 +199,7 @@ embed{
 */
 .description{
     position: absolute;
-    top:70px;
+    top:80px;
     right:20px;
     width:200px;
     z-index: 5;
@@ -205,7 +212,11 @@ embed{
 }
 .categoryDescription .title{
     background: #87878E;
-    margin:0px;
+    margin: 0px;
+    height: 25px;
+    padding: 0px 0px 0px 5px;
+    font-size: 14px;
+    line-height: 25px;
 }
 .description .excerpt{
     padding:5px;
@@ -222,15 +233,15 @@ embed{
 .centerContainer{
     position: absolute;
     left: 300px;
-    top: 70px;
+    top: 80px;
     bottom: 0px;
     right: 300px;
 }
 .centerContainer .singleTitle{
     background: #C1C1C7;
-    height: 30px;
-    line-height: 30px;
-    font-size: 16px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
     color: #000;
     margin: 0px 0.83% 40px 0.83%;
     padding:0px 0px 0px 10px;
@@ -279,13 +290,18 @@ embed{
     display: inline-block;
     margin:1%;
 }
+.videoItem .thumb{
+    width: 100%;
+    height: auto;
+    display: block;
+}
 .videoItem .title{
     position: absolute;
     bottom:-30px;
     left:0px;
     font-size: 14px;
-    height:20px;
-    line-height: 20px;
+    height:25px;
+    line-height: 25px;
     font-weight: normal;
     white-space: nowrap;
     overflow: hidden;
@@ -317,8 +333,8 @@ embed{
 }
 .item .title{
     font-size: 14px;
-    height: 20px;
-    line-height: 20px;
+    height: 25px;
+    line-height: 25px;
     background: #87878E;
     margin: 0px;
     padding:0px 0px 0px 10px;
@@ -362,18 +378,25 @@ embed{
 }
 
 /**
+*详情页
+*/
+.singleVideo{
+    height: 100%;
+}
+
+/**
 *关于我们
 */
 .aboutItemList{
-    margin: 70px 300px 0px 300px;
+    margin: 80px 300px 0px 300px;
 }
 .aboutItemList .aboutItem{
     margin-bottom: 20px;
 }
 .aboutItemList .aboutItem .title{
     font-size: 14px;
-    height: 20px;
-    line-height: 20px;
+    height: 25px;
+    line-height: 25px;
     background: #87878E;
     margin: 0px;
     padding:0px 0px 0px 10px;

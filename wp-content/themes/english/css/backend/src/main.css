@@ -1,0 +1,54 @@
+a{
+    text-decoration: none;
+}
+.addBtn{
+    background: #eee;
+    display: block;
+    height: 30px;
+    width:100px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 14px;
+}
+table{
+    width:100%;
+    text-align: center;
+}
+table th{
+    background: #eee;
+}
+
+/**
+*自定义分页
+*/
+.ownPagination{
+    text-align: center;
+    margin-top: 50px;
+}
+.ownPagination a{
+    display: inline-block;
+    height: 40px;
+    font-size: 14px;
+    width: auto;
+    margin:0px 5px;
+    line-height: 40px;
+    vertical-align: top;
+}
+.ownPagination a.disabled{
+    opacity: 0;
+}
+.ownPagination input {
+    border: none;
+    text-align: center;
+    height: 40px;
+    outline: none;
+    vertical-align: top;
+    width: 120px;
+    padding: 0;
+    margin: 0;
+    background: #f9f9f9;
+}
+
+.hidden{
+    display: none;
+}

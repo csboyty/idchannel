@@ -1,49 +1,58 @@
-<?php
-/**
- * The template for displaying Search Results pages.
- *
- * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
- */
+<?php get_header(); ?>
 
-get_header(); ?>
+<?php get_template_part("menu"); ?>
 
-	<section id="primary" class="site-content">
-		<div id="content" role="main">
+<div class="main">
+    <div class="centerContainer">
+        <h2 class="singleTitle singleTitleOne">搜索：<?php echo get_search_query(); ?></h2>
 
-		<?php if ( have_posts() ) : ?>
+        <?php
+        function get_own_link($link){
+            $sPos=strpos($link,"href=");
+            $ePos=strpos($link,">");
 
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'twentytwelve' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-			</header>
+            return substr($link,$sPos+6,$ePos-$sPos-8);
+        }
 
-			<?php twentytwelve_content_nav( 'nav-above' ); ?>
+        if($prev=get_previous_posts_link()){
+            ?>
+            <a class="prevPage pageItem" href="<?php echo get_own_link($prev); ?>"></a>
+        <?php
+        }
+        ?>
 
-			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', get_post_format() ); ?>
-			<?php endwhile; ?>
+        <ul class="itemList" id="itemList">
 
-			<?php twentytwelve_content_nav( 'nav-below' ); ?>
+            <?php while ( have_posts() ) : the_post();?>
 
-		<?php else : ?>
+                <li class="item">
+                    <a href="<?php the_permalink(); ?>">
+                        <h4 class="title"><?php echo get_the_date(); ?>|<?php the_title(); ?></h4>
+                        <div class="detail">
+                            <?php $mediumSrc = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium'); ?>
+                            <img class="thumb" src="<?php echo $mediumSrc[0]; ?>">
 
-			<article id="post-0" class="post no-results not-found">
-				<header class="entry-header">
-					<h1 class="entry-title"><?php _e( 'Nothing Found', 'twentytwelve' ); ?></h1>
-				</header>
+                            <div class="abstract">
+                                <h4 class="about"><?php the_title(); ?></h4>
+                                <p class="excerpt"><?php echo get_the_excerpt(); ?></p>
+                            </div>
 
-				<div class="entry-content">
-					<p><?php _e( 'Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'twentytwelve' ); ?></p>
-					<?php get_search_form(); ?>
-				</div><!-- .entry-content -->
-			</article><!-- #post-0 -->
+                        </div>
+                    </a>
+                </li>
 
-		<?php endif; ?>
+            <?php endwhile; // end of the loop. ?>
+        </ul>
 
-		</div><!-- #content -->
-	</section><!-- #primary -->
+        <?php
+        if($next=get_next_posts_link()){
+            ?>
+            <a class="nextPage pageItem" href="<?php echo get_own_link($next);?>"></a>
+        <?php
+        }
+        ?>
 
-<?php get_sidebar(); ?>
+    </div>
+</div>
+
 <?php get_footer(); ?>

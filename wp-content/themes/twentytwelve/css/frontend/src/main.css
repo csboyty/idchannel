@@ -8,7 +8,7 @@ body{
     padding:0px;
     margin:0px;
     border: 4px solid #9DCB3B;
-    background: #35353E;
+    background: url(../../../images/frontend/app/bodyBg.png) repeat #35353E;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -22,13 +22,18 @@ ul{
     margin:0px;
     list-style: none;
 }
-.logo{
-    width:123px;
-    height: 98px;
+.centerContent{
+    width:160px;
+    height: 64px;
     position: absolute;
     top:50%;
     left:50%;
-    margin:-49px 0px 0px -61.5px;
+    margin:-32px 0px 0px -80px;
+}
+.logo{
+    width:80px;
+    height: 64px;
+    margin: 0px;
 }
 .logo a{
     display: block;
@@ -36,18 +41,29 @@ ul{
     font-size: 0px;
     width:100%;
     height:100%;
+    background-size: 100%;
 }
 .langMenu{
     position: absolute;
-    right:20px;
-    top:40px;
+    right:0px;
+    top:0px;
+    height: 100%;
 }
 .langMenu li{
-    margin-top: 20px;
+    height: 50%;
+    text-align: center;
 }
 .langMenu a{
     font-size: 14px;
     color:#fff;
+    line-height: 32px;
+    transition:all .5s linear;
+    -webkit-transition:all .5s linear;
+    -moz-transition:all .5s linear;
+}
+.langMenu a:hover{
+    font-size: 18px;
+    color:#9DCB3B;
 }
 
 ._404Container{
@@ -72,4 +88,12 @@ ul{
 }
 ._404Container ._404Content a{
     color:#fff;
+}
+
+/**
+*
+*/
+.IE8 .logo a{
+    background: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://localhost/idchannel/wp-content/themes/twentytwelve/images/frontend/app/logo.gif',sizingMethod='scale');
 }

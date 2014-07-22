@@ -1,11 +1,5 @@
 <?php get_header(); ?>
 
-    <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/frontend/lib/jquery.nicescroll.min.js"></script>
-
-    <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/frontend/src/main.js"></script>
-</head>
-<body>
-
 <?php get_template_part("menu"); ?>
 
 <div class="description categoryDescription">
@@ -29,16 +23,18 @@
             foreach($categories as $category){
                 ?>
                 <li class="item">
-                    <h4 class="title"><?php echo $category->name; ?></h4>
-                    <div class="detail">
-                        <a class="thumbContainer" href="#">
+                    <a href="<?php echo get_category_link($category->term_id); ?>">
+                        <h4 class="title"><?php echo $category->name; ?></h4>
+                        <div class="detail">
+                            <div class="cover"></div>
                             <img class="thumb" src="<?php echo z_taxonomy_image_url($category->term_id); ?>">
-                        </a>
-                        <div class="abstract">
-                            <h4 class="about">关于<?php echo $category->name; ?></h4>
-                            <p class="excerpt"><?php echo $category->category_description; ?></p>
+
+                            <div class="abstract">
+                                <h4 class="about">关于<?php echo $category->name; ?></h4>
+                                <p class="excerpt"><?php echo $category->category_description; ?></p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </li>
                 <?php
             }

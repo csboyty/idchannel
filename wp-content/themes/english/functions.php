@@ -73,7 +73,7 @@ function twentytwelve_setup() {
 
 	// This theme uses a custom image size for featured images, displayed on "standard" posts.
 	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
+	set_post_thumbnail_size( 320, 180, true ); // Unlimited height, soft crop
 }
 add_action( 'after_setup_theme', 'twentytwelve_setup' );
 
@@ -448,3 +448,55 @@ function twentytwelve_customize_preview_js() {
 	wp_enqueue_script( 'twentytwelve-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20120827', true );
 }
 add_action( 'customize_preview_init', 'twentytwelve_customize_preview_js' );
+
+
+$templateDir=get_template_directory();
+$templateUrl=get_template_directory_uri();
+include($templateDir."/pages/controller/videoController.php");
+$videoController=new videoController();
+
+function loadResource($hook){
+    global $templateUrl;
+
+    if("post-new.php" == $hook){
+        wp_enqueue_script("ownPost",$templateUrl.'/js/backend/src/post.js');
+    }else if(isset($_GET["page"])){
+        if($_GET["page"]=="videoMgr"){
+
+            wp_enqueue_script("jqpagination",$templateUrl.'/js/backend/lib/jquery.jqpagination.min.js');
+            wp_enqueue_script("videoMgr",$templateUrl.'/js/backend/src/videoMgr.js');
+            wp_enqueue_style("mainCss",$templateUrl.'/css/backend/src/main.css');
+
+        }else if($_GET["page"]=="addVideo"){
+            wp_enqueue_style("mainCss",$templateUrl.'/css/backend/src/main.css');
+            wp_enqueue_script("ownPlupload",$templateUrl.'/js/backend/lib/plupload.full.min.js');
+            wp_enqueue_script("qiniu",$templateUrl.'/js/backend/lib/qiniu.js');
+            wp_enqueue_script("addVideo",$templateUrl.'/js/backend/src/addVideo.js');
+        }
+    }
+}
+//admin_head,admin_print_scripts一般都只是输出，函数中用echo
+add_action('admin_enqueue_scripts', 'loadResource');
+
+add_action("admin_init",array($videoController,"addTable"));
+
+function videoMgrPage(){
+    global $templateDir;
+    include($templateDir."/pages/view/videoMgr.php");
+}
+function addVideoPage(){
+    global $templateDir;
+    include($templateDir."/pages/view/addVideo.php");
+}
+function zy_add_menu(){
+    add_media_page("视频管理","视频管理",'publish_posts','videoMgr',"videoMgrPage");
+    add_media_page("添加视频","添加视频","publish_posts","addVideo","addVideoPage");
+}
+add_action("admin_menu","zy_add_menu");
+
+
+add_action("wp_ajax_addVideo",array($videoController,"addVideo"));
+add_action("wp_ajax_getUploadToken",array($videoController,"createUploadToken"));
+add_action("wp_ajax_getAccessToken",array($videoController,"createAccessToken"));
+
+add_action("wp_ajax_nopriv_receiveM3u8Url",array($videoController,"receiveM3u8Url"));
