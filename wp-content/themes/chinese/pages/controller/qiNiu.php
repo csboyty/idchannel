@@ -34,7 +34,10 @@ class qiNiu {
     public function createAccessToken($key){
         $urlEncodeBucket=urlencode($this->bucket);
         $keyEncodeKey=urlencode($key);
-        $encodeSaveAs=$this->URLSafeBase64Encode($this->bucket.":".$key.".m3u8");
+        $time=time();
+        $rand=rand(1,100);
+        $saveName=$time."-".$rand;
+        $encodeSaveAs=$this->URLSafeBase64Encode($this->bucket.":".$saveName.".m3u8");
         $fPos=urlencode("avthumb/m3u8/segtime/10/preset/video_640k|saveas/$encodeSaveAs");
         $callBackUrl=urlencode(admin_url("admin-ajax.php?action=receiveM3u8Url"));
 
