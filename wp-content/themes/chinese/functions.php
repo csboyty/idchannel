@@ -497,6 +497,7 @@ add_action("admin_menu","zy_add_menu");
 
 add_action("wp_ajax_addVideo",array($videoController,"addVideo"));
 add_action("wp_ajax_getUploadToken",array($videoController,"createUploadToken"));
+add_action("wp_ajax_nopriv_getUploadToken",array($videoController,"createUploadToken"));
 add_action("wp_ajax_getAccessToken",array($videoController,"createAccessToken"));
 
 add_action("wp_ajax_nopriv_receiveM3u8Url",array($videoController,"receiveM3u8Url"));

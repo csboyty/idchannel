@@ -12,8 +12,8 @@
 
 <?php while ( have_posts() ) : the_post(); ?>
 <div class="description">
-    <h2 class="title"><?php the_title(); ?></h2>
-    <p class="excerpt"><?php echo get_the_excerpt(); ?></p>
+    <h2 class="title" title="<?php the_title(); ?>"><?php the_title(); ?></h2>
+    <p class="excerpt" title="<?php echo get_the_excerpt(); ?>"><?php echo get_the_excerpt(); ?></p>
     <p class="category">
         <?php $categories = get_the_category();
             $category=$categories[0];
@@ -24,7 +24,7 @@
     <?php if($category->term_id==$newsId){
         ?>
         <div class="centerContainer">
-            <h2 class="singleTitle singleTitleOne"><?php the_title(); ?></h2>
+            <h2 class="singleTitle singleTitleOne" title="<?php the_title(); ?>"><?php the_title(); ?></h2>
             <div class="singleContent" id="singleContent">
                 <?php the_content(); ?>
             </div>

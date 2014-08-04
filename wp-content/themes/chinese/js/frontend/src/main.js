@@ -107,9 +107,23 @@ var main=(function(){
             if($("#singleContent").length!=0){
                 this.createScroll($("#singleContent"));
             }
+        },
+        setEllipsis:function(){
+            $(".description .excerpt").ellipsis({
+                row: 5
+            });
+            $(".abstract .excerpt").ellipsis({
+                row: Math.floor(($(".abstract").height()-80)/18)
+            });
         }
     }
 })();
 $(document).ready(function(){
     main.init();
+});
+$(window).load(function(){
+    main.setEllipsis();
+});
+$(window).resize(function(){
+    main.setEllipsis();
 });

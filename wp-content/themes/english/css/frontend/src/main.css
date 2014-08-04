@@ -7,6 +7,7 @@ body{
     height:100%;
     padding:0px;
     margin:0px;
+    min-width: 960px;
     border: 4px solid #9DCB3B;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -209,6 +210,9 @@ embed{
     font-size: 16px;
     padding:5px;
     margin:5px 0px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .categoryDescription .title{
     background: #87878E;
@@ -220,6 +224,8 @@ embed{
 }
 .description .excerpt{
     padding:5px;
+    word-break: break-all;
+    word-wrap: break-word;
 }
 .description .category{
     background: #87878E;
@@ -250,6 +256,9 @@ embed{
     margin:0px;
     background: #000;
     color:#fff;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .centerContainer .videoListContainer{
     position: relative;
@@ -338,6 +347,9 @@ embed{
     background: #87878E;
     margin: 0px;
     padding:0px 0px 0px 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .item .thumb{
     width: 70%;
@@ -355,14 +367,20 @@ embed{
     vertical-align: top;
     background: #C1C1C7;
     position: absolute;
+    overflow: hidden;
 }
 .item .abstract .about{
     padding:10px;
     margin:0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .item .abstract .excerpt{
     padding:10px;
     margin: 5px 0px 0px 0px;
+    word-break: break-all;
+    word-wrap: break-word;
 }
 .singleContent{
     background: #C1C1C7;
@@ -435,6 +453,7 @@ embed{
 .linkList li{
     width: auto;
     margin-left:10px;
+    display: inline-block;
 }
 .linkList li a{
     color:#fff;

@@ -4,7 +4,7 @@
 
 <div class="main">
     <div class="centerContainer">
-        <h2 class="singleTitle singleTitleOne">搜索：<?php echo get_search_query(); ?></h2>
+        <h2 class="singleTitle singleTitleOne" title="SEARCH：<?php echo get_search_query(); ?>">SEARCH：<?php echo get_search_query(); ?></h2>
 
         <?php
         function get_own_link($link){
@@ -27,14 +27,14 @@
 
                 <li class="item">
                     <a href="<?php the_permalink(); ?>">
-                        <h4 class="title"><?php echo get_the_date(); ?>|<?php the_title(); ?></h4>
+                        <h4 class="title" title="<?php echo get_the_date(); ?>|<?php the_title(); ?>"><?php echo get_the_date(); ?>|<?php the_title(); ?></h4>
                         <div class="detail">
                             <?php $mediumSrc = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium'); ?>
                             <img class="thumb" src="<?php echo $mediumSrc[0]; ?>">
 
                             <div class="abstract">
-                                <h4 class="about"><?php the_title(); ?></h4>
-                                <p class="excerpt"><?php echo get_the_excerpt(); ?></p>
+                                <h4 class="about" title="<?php the_title(); ?>"><?php the_title(); ?></h4>
+                                <p class="excerpt" title="<?php echo get_the_excerpt(); ?>"><?php echo get_the_excerpt(); ?></p>
                             </div>
 
                         </div>

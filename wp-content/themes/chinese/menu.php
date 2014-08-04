@@ -16,7 +16,9 @@
                 foreach($headLinePosts as $post){
                     ?>
 
-                    <li class="menu-item"><a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a></li>
+                    <li class="menu-item"><a href="<?php echo get_permalink($post->ID); ?>" title="<?php echo $post->post_title; ?>">
+                            <?php echo $post->post_title; ?>
+                        </a></li>
 
                 <?php
                 }

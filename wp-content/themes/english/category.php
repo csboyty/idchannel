@@ -5,9 +5,9 @@
 
     <div class="description categoryDescription">
         <h2 class="title"><?php single_cat_title(); ?></h2>
-        <p class="excerpt">
-            <?php $category = get_queried_object();
-                echo $category->description; ?>
+        <?php $category = get_queried_object();?>
+        <p class="excerpt" title="<?php echo $category->description; ?>">
+            <?php echo $category->description; ?>
         </p>
     </div>
     <div class="main">
@@ -36,7 +36,7 @@
                                 <div class="cover"></div>
                                 <?php $thumbnailSrc = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
                                 <img class="thumb" src="<?php echo $thumbnailSrc[0]; ?>">
-                                <h3 class="title"><?php the_title(); ?></h3>
+                                <h3 class="title" title="<?php the_title(); ?>"><?php the_title(); ?></h3>
                             </a>
                         </li>
                     <?php endwhile; // end of the loop. ?>

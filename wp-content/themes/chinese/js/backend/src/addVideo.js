@@ -100,6 +100,8 @@ var addVideo=(function($){
                     },
                     'Error': function(up, err, errTip) {
                         alert(errTip);
+
+                        up.refresh();
                     },
                     'Key': function(up, file) {
 
