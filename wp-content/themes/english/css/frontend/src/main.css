@@ -394,6 +394,15 @@ embed{
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
+.singleContent table{
+    width: 100%;
+}
+.singleContent img{
+    display: block;
+    max-width: 100%;
+    border:none;
+    margin: auto;
+}
 
 /**
 *详情页

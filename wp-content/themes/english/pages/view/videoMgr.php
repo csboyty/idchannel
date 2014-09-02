@@ -20,7 +20,7 @@ if(isset($_GET["option"])){
         echo "<p>删除成功，请继续其他操作！</p>";
     }
 }
-$offset=isset($_GET["paged"])?$_GET["paged"]*$perLoad:0;
+$offset=isset($_GET["paged"])?($_GET["paged"]-1)*$perLoad:0;
 
 $videoCount=$videoController->getVideosCount();
 $videos=$videoController->getVideos($offset);

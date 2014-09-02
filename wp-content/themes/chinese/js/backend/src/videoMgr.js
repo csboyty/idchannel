@@ -8,10 +8,16 @@
 jQuery(document).ready(function($){
     $('#ownPagination').jqPagination({
         max_page:Math.ceil(maxPage),
-        current_page:1,
+        current_page:currentPage,
         page_string:" {current_page} / {max_page}",
         paged: function(page) {
-            window.location.href=url.replace(/paged=\d/g,"paged="+page);
+            var currentHref=window.location.href;
+            if(currentHref.indexOf("paged")!=-1){
+                window.location.href=currentHref.replace(/paged=[\d]+/g,"paged="+page);
+            }else{
+                window.location.href=url+"&paged="+page;
+            }
+
         }
     });
 });

@@ -20,13 +20,14 @@ class videoController {
      */
     public function getVideos($offset){
         global $wpdb;
-        $query="SELECT id, name,m3u8Url,url,type,status FROM $this->videoTable ORDER BY id DESC LIMIT $this->perLoad OFFSET $offset";
+        $query="SELECT id, name,m3u8Url,url,type,status FROM $this->videoTable WHERE status!=-1
+        ORDER BY id DESC LIMIT $this->perLoad OFFSET $offset";
         return $wpdb->get_results($query,OBJECT);
     }
 
     public function deleteVideo($videoId){
         global $wpdb;
-        return $wpdb->delete($this->videoTable,array("id"=>$videoId));
+        return $wpdb->update($this->videoTable,array("status"=>-1),array("id"=>$videoId));
     }
 
     /**
@@ -35,7 +36,7 @@ class videoController {
      */
     public function getVideosCount(){
         global $wpdb;
-        $query="SELECT COUNT(*) FROM $this->videoTable";
+        $query="SELECT COUNT(*) FROM $this->videoTable WHERE status!=-1";
         return $wpdb->get_var($query);
     }
 

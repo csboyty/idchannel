@@ -109,11 +109,13 @@ var addVideo=(function($){
                         // 该配置必须要在 unique_names: false , save_key: false 时才生效
                         var random=Math.floor(Math.random()*10+1)*(new Date().getTime());
                         var type=up.getOption("videoType");
-                        var key=random+"-"+file.name;
+                        var key=file.name;
 
                         if(type==2){
-                            //如果是Flash需要加上路径
+                            //如果是Flash需要加上路径，确保flash和其调用的视频在同一目录下，还可以防止重名
                             key=$("#FlashName").val()+"/"+key;
+                        }else{
+                            key=random+"_"+key; //防止重名，重名无法上传
                         }
 
 
