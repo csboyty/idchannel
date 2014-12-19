@@ -11,7 +11,7 @@
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/frontend/lib/baiduPlayer/js/cyberplayer.min.js"></script>
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/frontend/lib/jquery.nicescroll.min.js"></script>
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/frontend/lib/jquery.ellipsis.js"></script>
-
+    <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/frontend/src/baiduAnalytics.js"></script>
     <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/frontend/src/main.js"></script>
 
 

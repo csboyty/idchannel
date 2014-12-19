@@ -35,7 +35,7 @@ var addVideo=(function($){
 
     return {
         up:null,
-        createUploader:function(uploadToken,type){
+        createUploader:function(type){
             this.up = Qiniu.uploader({
                 runtimes: 'html5,flash,html4',    //上传模式,依次退化
                 browse_button: 'uploadBtn',       //上传选择的点选按钮，**必需**
@@ -152,7 +152,7 @@ var addVideo=(function($){
 
 jQuery(document).ready(function($){
 
-    addVideo.createUploader();
+    addVideo.createUploader($("#videoType").val());
 
 
     $("#videoType").change(function(){
