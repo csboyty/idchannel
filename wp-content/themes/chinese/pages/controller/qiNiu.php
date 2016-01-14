@@ -9,6 +9,7 @@
 
 class qiNiu {
     public $bucket = 'id-channel-1';
+    public $pipeline="IdChannelMedia";
     public $accessKey = 'Q-DeiayZfPqA0WDSOGSf-ekk345VrzuZa_6oBrX_';
     public $secretKey = 'fIiGiRr3pFmHOmBDR2Md1hTCqpMMBcE_gvZYMzwD';
 
@@ -31,6 +32,11 @@ class qiNiu {
         return base64_decode(str_replace($find, $replace, $str));
     }
 
+    /**
+     * 处理策略
+     * @param $key
+     * @return array
+     */
     public function createAccessToken($key){
         $urlEncodeBucket=urlencode($this->bucket);
         $keyEncodeKey=urlencode($key);
@@ -38,10 +44,14 @@ class qiNiu {
         $rand=rand(1,100);
         $saveName=$time."-".$rand;
         $encodeSaveAs=$this->URLSafeBase64Encode($this->bucket.":".$saveName.".m3u8");
-        $fPos=urlencode("avthumb/m3u8/segtime/10/preset/video_640k|saveas/$encodeSaveAs");
+        //$fPos=urlencode("avthumb/m3u8/segtime/10/preset/video_640k|saveas/$encodeSaveAs");
+        $fPos=urlencode("avthumb/m3u8/segtime/10/ab/128k/ar/44100/acodec/libfaac/r/30/vb/1000k/
+        vcodec/libx264/stripmeta/0|saveas/$encodeSaveAs");
         $callBackUrl=urlencode(admin_url("admin-ajax.php?action=receiveM3u8Url"));
 
-        $query="?bucket=".$urlEncodeBucket."&key=".$keyEncodeKey."&fops=".$fPos."&notifyURL=".$callBackUrl;
+        //请求的参数
+        $query="?bucket=".$urlEncodeBucket."&key=".$keyEncodeKey.
+            "&fops=".$fPos."&notifyURL=".$callBackUrl."&pipeline=".$this->pipeline;
 
         $signingStr=$this->qiNiuHandlerPath.$query."\n";
 
@@ -62,11 +72,16 @@ class qiNiu {
      * @return mixed|string|void
      */
     public function createReturnBody(){
+        //使用专有通道
         $returnBody=array("scope"=>$this->bucket,"deadline"=>24*60*60+time());
 
         return json_encode($returnBody);
     }
 
+    /**
+     * 根据原始的uploadToken进行加密等处理，生成uptoken
+     * @return array
+     */
     public function createUploadToken(){
 
         $encodedPutPolicy = $this->URLSafeBase64Encode($this->createReturnBody());
@@ -101,7 +116,7 @@ class qiNiu {
         //$response_message = wp_remote_retrieve_response_message( $response );
         $response_body=wp_remote_retrieve_body($response);
 
-        //error_log(date("[Y-m-d H:i:s]").$response_body,3,get_template_directory()."/log.log");
+        //error_log(date("[Y-m-d H:i:s]").$response_message,3,get_template_directory()."/log.log");
 
         return $response_body;
     }
