@@ -16,7 +16,7 @@ class qiNiu {
     public $qiNiuDn="qiniudn.com";
     public $qiNiuApiHost="api.qiniu.com";
     public $qiNiuHandlerUrl="http://api.qiniu.com/pfop";
-    public $qiNiuHandlerPath="/pfop";
+    public $qiNiuHandlerPath="/pfop/";
 
     public function URLSafeBase64Encode($str) // URLSafeBase64Encode
     {
