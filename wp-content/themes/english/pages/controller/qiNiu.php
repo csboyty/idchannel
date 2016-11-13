@@ -38,7 +38,9 @@ class qiNiu {
         $rand=rand(1,100);
         $saveName=$time."-".$rand;
         $encodeSaveAs=$this->URLSafeBase64Encode($this->bucket.":".$saveName.".m3u8");
-        $fPos=urlencode("avthumb/m3u8/segtime/10/preset/video_640k|saveas/$encodeSaveAs");
+        //$fPos=urlencode("avthumb/m3u8/segtime/10/preset/video_640k|saveas/$encodeSaveAs");
+        $fPos=urlencode("avthumb/m3u8/segtime/10/ab/128k/ar/44100/acodec/libfaac/r/30/vb/1000k/
+        vcodec/libx264/stripmeta/0|saveas/$encodeSaveAs");
         $callBackUrl=urlencode(admin_url("admin-ajax.php?action=receiveM3u8Url"));
 
         $query="?bucket=".$urlEncodeBucket."&key=".$keyEncodeKey."&fops=".$fPos."&notifyURL=".$callBackUrl;
